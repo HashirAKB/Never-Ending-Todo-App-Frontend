@@ -1,71 +1,27 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
-// import { CreateTodo } from './components/CreateTodo';
-// import { ToDo } from './components/Todos';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 
-// function App() {
-//   const [count, setCount] = useState(0);
-//   const [todos, setTodos] = useState([
-//     {
-//     title:'go to gym',
-//     description:'gym from 7 to 9',
-//     completed: false
-//     },
-//     {
-//         title:'Complete DSA class',
-//         description:'DSA class from 9 to 11',
-//         completed: true
-//     },
-//     {
-//         title:'Complete DSA class 222',
-//         description:'DSA class from 9 to 11',
-//         completed: true
-//     }]);
-//   const Header = function ({title}){
-//     return <div>
-//       {title}
-//     </div>
-//   }
-  
+import { HomePage } from './pages/HomePage';
+import { NavBar } from './components/NavBar';
+import { LoginPage } from './pages/LoginPage';
+import { SignupPage } from './pages/SignupPage';
+import { ProfilePage } from './pages/ProfilePage';
+import { TodoPage } from './pages/TodoListPage';
 
-//   const setCounter = () => setCount(count + 1);
-//   return (
-//     <>
-//       <CreateTodo/>
-//       <ToDo todos={todos}/>
-//     </>
-//   )
-// }
+function App() {
+ return(
+  <>
+    <BrowserRouter>
+      <NavBar/>
+      <Routes>
+        <Route path='/signin' element={<LoginPage/>}/>
+        <Route path='/signup' element={<SignupPage/>}/>
+        <Route path='/profile' element={<ProfilePage/>}/>
+        <Route path='/todos' element={<TodoPage/>}/>
+        <Route path='/' element={<HomePage/>}/>
+      </Routes>
+    </BrowserRouter>
+  </>
+ );
+}
 
-// export default App
-
-import React, { useState, useCallback } from 'react';
-
-const ChildComponent = ({ onClick }) => {
-  console.log('ChildComponent rendering...');
-  return <button onClick={onClick}>Click me</button>;
-};
-
-const CallbackExample = () => {
-  const [count, setCount] = useState(0);
-
-  // Regular callback function
-  const handleClick = () => {
-    console.log('Button clicked!');
-    setCount((prevCount) => prevCount + 1);
-  };
-
-  // Memoized callback using useCallback
-  const memoizedHandleClick = useCallback(handleClick, []);
-
-  return (
-    <div>
-      <p>Count: {count}</p>
-      <ChildComponent onClick={memoizedHandleClick} />
-    </div>
-  );
-};
-
-export default CallbackExample;
+export default App
