@@ -4,8 +4,6 @@ import { useRecoilValue } from 'recoil';
 // import { userState } from '../recoil/atoms';
 
 export function HomePage() {
-//   const user = useRecoilValue(userState) || null;
-    const user = {"username": "hashir"};
 
   return (
     <div className="home-page">
