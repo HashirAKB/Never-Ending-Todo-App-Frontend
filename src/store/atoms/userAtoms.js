@@ -10,3 +10,12 @@ export const passwordState = atom({
     default:'',
 });
 
+export const signupResultState = atom({
+    key:'signupResultState',
+    default:false,
+})
+
+export const jwtTokenState = atom({
+    key:'jwtTokenState',
+    default:''
+})
