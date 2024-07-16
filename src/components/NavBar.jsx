@@ -20,7 +20,7 @@ export const NavBar = () => {
                     <Link to={"/profile"}>
                         <button>View profile</button>
                     </Link>
-                    <button onClick={() => {signout}}>SignOut</button>
+                    <button onClick={() => {signout()}}>SignOut</button>
                 </>
                     :
                     <>
