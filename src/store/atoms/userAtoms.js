@@ -10,6 +10,11 @@ export const passwordState = atom({
     default:'',
 });
 
+export const ConfirmPasswordState = atom({
+    key:'confirmPasswordState',
+    default:'',
+});
+
 export const signupResultState = atom({
     key:'signupResultState',
     default:false,
@@ -18,4 +23,9 @@ export const signupResultState = atom({
 export const jwtTokenState = atom({
     key:'jwtTokenState',
     default:''
+})
+
+export const IsEditingState = atom({
+    key:'isEditingState',
+    default:false,
 })
