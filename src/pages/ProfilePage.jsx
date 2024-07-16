@@ -52,6 +52,28 @@ export const ProfilePage = () => {
         setConfirmPasswordState('');
     }
 
+    const deleteProfile = () => {
+            let userId = decode(jwtToken).payload.userId;
+            console.log(`User id is ${userId}`);
+            console.log(`Delete clicked. userId:$ {userId}`);
+            axios.delete(`http://localhost:3000/user/${userId}`,{
+            headers:{
+                'Authorization': `Bearer ${jwtToken}`
+            }
+            })
+            .then(function (response) {
+                console.log(response);
+                if(response.status === 200){
+                    alert("Profile deleted succesfully!");
+                    signout();
+                    // navigateToSignin();
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     useEffect(() => {
         if (jwtToken === '') {
             navigate('/signin');
@@ -89,7 +111,7 @@ export const ProfilePage = () => {
             }
             <br/>
             <br/>
-            <button>Delete Profile</button>
+            <button onClick={deleteProfile}>Delete Profile</button>
 
         </>
     )
