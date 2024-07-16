@@ -19,3 +19,13 @@ export const TodoDescription = atom({
     key:"todoDescription",
     default:'',
 });
+
+export const NewTodoTitle = atom({
+    key:"newtodoTitle",
+    default:'',
+});
+
+export const NewTodoDescription = atom({
+    key:"NewtodoDescription",
+    default:'',
+});

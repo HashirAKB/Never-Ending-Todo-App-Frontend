@@ -1,5 +1,6 @@
 //src\components\TodoItem.jsx
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from "recoil";
 import { jwtTokenState } from "../store/atoms/userAtoms";
@@ -8,10 +9,10 @@ import { useDeferredValue, useEffect } from "react";
 
 export const TodoItem = ({todo, fetchTodos}) => {
     const jwtToken = useRecoilValue(jwtTokenState);
-    const [todoTitle, settodoTitle] = useRecoilState(TodoTitle);
-    const [todoDescription, settodoDescription] = useRecoilState(TodoDescription);
+    const [todoTitle, settodoTitle] = useState(todo.title);
+    const [todoDescription, settodoDescription] = useState(todo.description);
     const navigate = useNavigate();
-    const [editTodoMode, setEditTodoMode] = useRecoilState(editTodo);
+    const [editTodoMode, setEditTodoMode] = useState(false);
     useEffect(() => {
         settodoTitle(todo.title);
         settodoDescription(todo.description);
