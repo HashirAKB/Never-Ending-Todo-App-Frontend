@@ -2,6 +2,7 @@
 import { useRecoilState, useRecoilValue } from "recoil"
 import { TodoItem } from "../components/TodoItem"
 import { todoState } from "../store/atoms/todoAtoms"
+import { AddTodo } from "../components/AddTodo";
 import { jwtTokenState } from "../store/atoms/userAtoms";
 import { useEffect } from "react";
 import axios from 'axios';
@@ -37,6 +38,7 @@ export const TodoPage = () => {
     return(
         <>
             <h2>This is Todo Page.</h2>
+            <AddTodo fetchTodos={fetchTodos}/>
             {todos.map(todo => (
                 <TodoItem key={todo._id} todo={todo} fetchTodos={fetchTodos}/>
             ))}
