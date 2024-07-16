@@ -5,8 +5,11 @@ import { todoState } from "../store/atoms/todoAtoms"
 import { jwtTokenState } from "../store/atoms/userAtoms";
 import { useEffect } from "react";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
 
 export const TodoPage = () => {
+    const navigate = useNavigate();
     const [todos, setTodos] = useRecoilState(todoState);
     const jwtToken = useRecoilValue(jwtTokenState);
     const fetchTodos = async () => {
@@ -25,8 +28,11 @@ export const TodoPage = () => {
     }
 
     useEffect(() => {
+        if (jwtToken === '') {
+            navigate('/signin');
+        }
         fetchTodos();
-    },[jwtToken]);
+    },[jwtToken, navigate]);
 
     return(
         <>
