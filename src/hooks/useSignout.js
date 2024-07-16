@@ -2,7 +2,7 @@
 import { useSetRecoilState } from "recoil"
 import { ConfirmPasswordState, IsEditingState, jwtTokenState, passwordState, usernameState } from "../store/atoms/userAtoms"
 import { useNavigate } from "react-router-dom";
-import { todoState } from "../store/atoms/todoAtoms";
+import { editTodo, todoState } from "../store/atoms/todoAtoms";
 
 export const useSignout = () => {
     const clearJWT = useSetRecoilState(jwtTokenState);
@@ -11,6 +11,7 @@ export const useSignout = () => {
     const clearPassword = useSetRecoilState(passwordState);
     const clearConfirmPassword = useSetRecoilState(ConfirmPasswordState);
     const clearIfIsEdit = useSetRecoilState(IsEditingState);
+    const todoEditMode = useSetRecoilState(editTodo);
     const navigate = useNavigate();
 
     return () => {
@@ -20,6 +21,7 @@ export const useSignout = () => {
         clearPassword('');
         clearConfirmPassword('');
         clearIfIsEdit(false);
+        todoEditMode(false);
         navigate('/');
     };
 }

@@ -32,13 +32,13 @@ export const TodoPage = () => {
             navigate('/signin');
         }
         fetchTodos();
-    },[jwtToken, navigate]);
+    },[jwtToken, navigate,]);
 
     return(
         <>
             <h2>This is Todo Page.</h2>
             {todos.map(todo => (
-                <TodoItem key={todo._id} todo={todo}/>
+                <TodoItem key={todo._id} todo={todo} fetchTodos={fetchTodos}/>
             ))}
         </>
     )
