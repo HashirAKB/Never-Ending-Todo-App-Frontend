@@ -39,8 +39,8 @@ export const SignupPage = () => {
     }
     return(
         <>
-            <h2>This is Signup Page.</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
+                <h2>This is Signup Page.</h2>
                 <h3>Username:</h3>
                 {/* register your input into the hook by invoking the "register" function */}
                 <input placeholder="Enter Username" {...register("username", { required: true })} />

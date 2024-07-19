@@ -42,9 +42,9 @@ export const LoginPage = () => {
 
     return(
         <>
-            {signupResult? <h3>Signup successfull, Please login with your credentials.</h3> : null}
-            <h2>This is Login Page.</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
+                <h2>This is Login Page.</h2>
+                {signupResult? <h3>Signup successfull, Please login with your credentials.</h3> : null}
                 <h3>Username:</h3>
                 {/* register your input into the hook by invoking the "register" function */}
                 <input placeholder="Enter Username" {...register("username", { required: true })} />
