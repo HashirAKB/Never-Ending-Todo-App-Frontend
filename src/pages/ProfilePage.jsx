@@ -3,7 +3,7 @@ import { ConfirmPasswordState, IsEditingState, passwordState, usernameState, jwt
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { decode } from 'jwt-js-decode';
-import axios from 'axios';
+import axiosInstance from "../utils/axiosInstance";
 import { useSignout } from "../hooks/useSignout";
 
 export const ProfilePage = () => {
@@ -29,7 +29,7 @@ export const ProfilePage = () => {
             let userId = decode(jwtToken).payload.userId;
             console.log(`User id is ${userId}`);
             console.log(`Update clicked. Username:${username}, Password:${password}`);
-            axios.put(`http://localhost:3000/user/${userId}`, {
+            axiosInstance.put(`/user/${userId}`, {
                 "username": username,
                 "password": password
             }, {
@@ -56,7 +56,7 @@ export const ProfilePage = () => {
             let userId = decode(jwtToken).payload.userId;
             console.log(`User id is ${userId}`);
             console.log(`Delete clicked. userId:$ {userId}`);
-            axios.delete(`http://localhost:3000/user/${userId}`,{
+            axiosInstance.delete(`/user/${userId}`,{
             headers:{
                 'Authorization': `Bearer ${jwtToken}`
             }

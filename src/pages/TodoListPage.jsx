@@ -5,7 +5,7 @@ import { todoState } from "../store/atoms/todoAtoms"
 import { AddTodo } from "../components/AddTodo";
 import { jwtTokenState } from "../store/atoms/userAtoms";
 import { useEffect } from "react";
-import axios from 'axios';
+import axiosInstance from "../utils/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
 
@@ -15,7 +15,7 @@ export const TodoPage = () => {
     const jwtToken = useRecoilValue(jwtTokenState);
     const fetchTodos = async () => {
         try{
-            const response = await axios.get('http://localhost:3000/todos',{
+            const response = await axiosInstance.get('/todos',{
                 headers:{
                     'Authorization': `Bearer ${jwtToken}`
                 }

@@ -2,7 +2,7 @@ import { useRecoilState, useRecoilValue } from "recoil"
 import { NewTodoDescription, NewTodoTitle } from "../store/atoms/todoAtoms"
 import { jwtTokenState } from "../store/atoms/userAtoms";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 import { useEffect } from "react";
 
 export const AddTodo = ({fetchTodos}) => {
@@ -15,7 +15,7 @@ export const AddTodo = ({fetchTodos}) => {
 
     const handleAddTodo = () => {
         console.log(`AddTodo clicked. Title:${title}, Description:${description}`);
-        axios.post('http://localhost:3000/todos', {
+        axiosInstance.post('/todos', {
             "title": title,
             "description": description
         },

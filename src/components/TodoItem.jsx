@@ -1,7 +1,7 @@
 //src\components\TodoItem.jsx
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from 'axios';
+import axiosInstance from "../utils/axiosInstance";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { jwtTokenState } from "../store/atoms/userAtoms";
 import { editTodo, TodoDescription, TodoTitle } from "../store/atoms/todoAtoms";
@@ -21,7 +21,7 @@ export const TodoItem = ({todo, fetchTodos}) => {
     console.log(`Todo edit mode: ${editTodoMode}`);
 
     const deleteTodo = (id) => {
-        axios.delete(`http://localhost:3000/todos/${id}`,{
+        axiosInstance.delete(`/todos/${id}`,{
         headers:{
             'Authorization': `Bearer ${jwtToken}`
         }
@@ -39,7 +39,7 @@ export const TodoItem = ({todo, fetchTodos}) => {
     }
 
     const updateTodo = (id) => {
-        axios.put(`http://localhost:3000/todos/${id}`,{
+        axiosInstance.put(`/todos/${id}`,{
             "title": todoTitle,
             "description": todoDescription,
         },

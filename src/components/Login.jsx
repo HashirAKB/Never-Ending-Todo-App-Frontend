@@ -1,7 +1,7 @@
 //src\components\Login.jsx
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { passwordState, jwtTokenState, usernameState } from "../store/atoms/userAtoms";
-import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 import { useNavigate } from 'react-router-dom';
 
 export const SigninButton = () => {
@@ -19,7 +19,7 @@ export const SigninButton = () => {
 
     const handleSignin = () => {  
         console.log(`Signin clicked. Username:${username}, Password:${password}`);
-        axios.post('http://localhost:3000/user/signin', {
+        axiosInstance.post('/user/signin', {
             "username": username,
             "password": password
           })

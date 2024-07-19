@@ -1,6 +1,6 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { passwordState, signupResultState, usernameState } from "../store/atoms/userAtoms";
-import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 import { useNavigate } from 'react-router-dom';
 
 export const SignupButton = () => {
@@ -17,7 +17,7 @@ export const SignupButton = () => {
 
     const handleSignup = () => {  
         console.log(`Signup clicked. Username:${username}, Password:${password}`);
-        axios.post('http://localhost:3000/user/signup', {
+        axiosInstance.post('/user/signup', {
             "username": username,
             "password": password
           })
