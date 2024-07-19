@@ -1,27 +1,62 @@
-import { useRecoilState } from "recoil";
-import { SignupButton } from "../components/Signup"
-import { passwordState, usernameState } from "../store/atoms/userAtoms";
+import { useForm } from "react-hook-form"
+import { useSetRecoilState } from "recoil";
+import {signupResultState } from "../store/atoms/userAtoms";
+import axiosInstance from "../utils/axiosInstance";
+import { useNavigate } from 'react-router-dom';
+
 export const SignupPage = () => {
-    const [username, setUsername] = useRecoilState(usernameState);
-    const [password, setPassword] = useRecoilState(passwordState);
+    console.log("Signup Page Component");
+    const setSignupResult = useSetRecoilState(signupResultState);
+
+    const navigate = useNavigate();
+    const navigateToSignin = () => {
+        navigate('/signin');
+    }
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+      } = useForm()
+    
+    const onSubmit = (data) => {
+        console.log(data.username, data.password);
+        axiosInstance.post('/user/signup', {
+            "username": data.username,
+            "password": data.password
+          })
+          .then(function (response) {
+            console.log(response);
+            if(response.status == 200){
+                setSignupResult(true);
+                navigateToSignin();
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
     return(
         <>
-            <h2>This is Signup Page.</h2>
-            <h3>Username:</h3>
-            <input 
-                type="text"
-                placeholder="Username"
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <h3>Password:</h3>
-            <input
-                type="password" 
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-                />
-            <br/>            
-            <br/> 
-            <SignupButton/>           
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <h2>This is Signup Page.</h2>
+                <h3>Username:</h3>
+                {/* register your input into the hook by invoking the "register" function */}
+                <input placeholder="Enter Username" {...register("username", { required: true })} />
+                <br/>
+                {errors.username && <span>Username is required</span>}
+
+                <h3>Password:</h3>
+                {/* include validation with required or other standard HTML validation rules */}
+                <input type="password" placeholder="Enter Password" {...register("password", { required: true })} />
+                {/* errors will return when field validation fails  */}
+                <br/>
+                {errors.password && <span>Password is required</span>}
+                <br/>
+                <br/>
+                <button type="submit">Signup</button>
+            </form>           
         </>
     )
 }

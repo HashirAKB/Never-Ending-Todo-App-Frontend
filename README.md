@@ -40,6 +40,49 @@ Never-Ending-Todo-App-FrontEnd/
 - Axios (for API requests)
 - Vite (as build tool)
 
+## Live Demo
+
+Experience the Never-Ending Todo App in action:
+
+- Frontend: [https://never-ending-todo-app-frontend.onrender.com/](https://never-ending-todo-app-frontend.onrender.com/)
+- Backend API: [https://never-ending-todo-app-backend.onrender.com](https://never-ending-todo-app-backend.onrender.com)
+
+### State of the Application
+<details>
+  <summary>16.07.2024</summary>
+
+    1. Basic React Todo App Structure
+    2. Implemented core components (NavBar, TodoList, TodoItem)
+    3. Set up basic routing with React Router
+    4. Initialized state management with Recoil
+</details>
+
+<details>
+  <summary>19.07.2024</summary>
+
+    1. Enhanced User Authentication
+      - Implemented JWT-based authentication
+      - Added login and signup pages
+      - Created protected routes for authenticated users
+
+    2. Improved Todo Management
+      - Implemented CRUD operations for todos
+      - Added ability to mark todos as complete
+      - Integrated with backend API for todo persistence
+
+    3. User Profile Management
+      - Created user profile page
+      - Implemented profile editing functionality
+      - Added option to delete user account
+
+    4. Axios Integration
+      - Implemented custom Axios instance for API calls
+      - Centralized API request configuration
+      - Added interceptors for token handling and error management
+
+    These updates significantly enhance the application's functionality, user experience, and code quality. Future iterations will focus on performance optimization, additional features, and improved testing coverage.
+</details>
+
 ## Getting Started
 
 1. Clone the repository:
