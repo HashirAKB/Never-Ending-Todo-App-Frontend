@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import {signupResultState } from "../store/atoms/userAtoms";
 import axiosInstance from "../utils/axiosInstance";
 import { useNavigate } from 'react-router-dom';
